@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Võ Ngọc Yến Vy | Portfolio</title>
+  <style>
+    /* Root theme variables */
+    :root {
+      --bg: #fff3d4;
+      --surface: rgba(255, 250, 236, 0.95);
+      --surface-soft: rgba(255, 250, 236, 0.8);
+      --text: #1c1b18;
+      --text-soft: #5c533c;
+      --muted: #7d765f;
+      --primary: #f5c54b;
+      --primary-soft: rgba(245, 197, 75, 0.25);
+      --border: rgba(158, 140, 90, 0.14);
+      --shadow: 0 30px 80px rgba(28, 24, 17, 0.08);
+      --radius: 28px;
+      --radius-sm: 18px;
+      --max-width: 1180px;
+      font-family: Inter, "Segoe UI", Roboto, sans-serif;
+      color-scheme: light;
+    }
+
+    body.dark {
+      --bg: #050506;
+      --surface: rgba(10, 10, 14, 0.95);
+      --surface-soft: rgba(15, 15, 20, 0.92);
+      --text: #f8f7f1;
+      --text-soft: #d7c889;
+      --muted: #a89f84;
+      --primary: #f4d86f;
+      --primary-soft: rgba(244, 216, 111, 0.22);
+      --border: rgba(244, 216, 111, 0.18);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      background-color: var(--bg);
+      background-image:
+        url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23f5c54b' stroke-width='0.68' fill='none' opacity='0.14'%3E%3Cpath d='M5 5 L45 5 L45 15 L15 15 L15 25 L35 25 L35 35 L25 35 L25 45'/%3E%3C/g%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f5c54b' opacity='0.06'%3E%3Ccircle cx='10' cy='10' r='1.5'/%3E%3Ccircle cx='50' cy='50' r='1.5'/%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/svg%3E"),
+        radial-gradient(circle at 12% 18%, rgba(245, 197, 75, 0.18), transparent 18%),
+        radial-gradient(circle at 78% 12%, rgba(245, 197, 75, 0.12), transparent 15%),
+        linear-gradient(180deg, var(--bg) 0%, #fff3d4 100%),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px, 60px 60px, auto, auto, auto, 30px 30px, 30px 30px;
+      background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, repeat, repeat;
+      background-attachment: fixed;
+      position: relative;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      transition: background 0.4s ease, color 0.4s ease;
+      animation: bgBreathe 18s ease-in-out infinite;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top right, rgba(245, 197, 75, 0.12), transparent 28%),
+                  linear-gradient(180deg, rgba(255, 249, 230, 0.4), rgba(255, 249, 230, 0.07));
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.95;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 240px;
+      background-image: url('https://images.unsplash.com/photo-1625246333333-f89aff2b4e3f?w=1200&h=300&fit=crop&q=20');
+      background-repeat: repeat-x;
+      background-position: bottom;
+      background-size: auto 240px;
+      background-attachment: scroll;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.75;
+      animation: bgFloat 24s ease-in-out infinite;
+    }
+
+    @keyframes bgFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    body.dark::before {
+      background: radial-gradient(circle at top right, rgba(244, 216, 111, 0.1), transparent 26%),
+                  linear-gradient(180deg, rgba(10, 10, 14, 0.9), rgba(0, 0, 0, 0.95));
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page {
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(20px);
+      background: rgba(255, 250, 230, 0.24);
+      border-bottom: 1px solid rgba(245, 197, 75, 0.16);
+      box-shadow: 0 20px 40px rgba(28,24,17,0.08);
+      transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    body.dark header {
+      background: rgba(0, 0, 0, 0.86);
+      border-bottom-color: rgba(244, 216, 111, 0.18);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 18px 0;
+    }
+
+    .navbar nav {
+      flex: none;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .logo {
+      font-size: 0.95rem;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: 0.95;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-list a {
+      color: var(--muted);
+      position: relative;
+      transition: color 0.25s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.95rem;
+    }
+
+    .nav-list a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+      opacity: 0;
+    }
+
+    .nav-list a:hover,
+    .nav-list a:focus {
+      color: var(--text);
+    }
+
+    .nav-list a:hover::after,
+    .nav-list a:focus::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    .theme-toggle {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      border: 1px solid rgba(245, 197, 75, 0.35);
+      background: linear-gradient(135deg, rgba(245, 197, 75, 0.22), rgba(255, 249, 230, 0.9));
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 18px 36px rgba(245, 197, 75, 0.16);
+      transition: transform 0.25s ease, background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+    }
+
+    body.dark .theme-toggle {
+      background: rgba(244, 216, 111, 0.18);
+      border-color: rgba(244, 216, 111, 0.32);
+      color: var(--text);
+      box-shadow: 0 18px 36px rgba(244, 216, 111, 0.16);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      position: relative;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+    }
+
+
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+
+
+    @keyframes bgBreathe {
+      0%, 100% { background-position: 0 0, 0 0, 8% 18%, 78% 12%, 0 0, 30px 30px, 30px 30px; }
+      50% { background-position: 3% 2%, -2% -3%, 6% 24%, 76% 8%, 0 0, 28px 32px, 34px 28px; }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1) translateX(0); opacity: 0.78; }
+      50% { transform: scale(1.04) translateX(-4px); opacity: 0.92; }
+    }
+
+
+    .hero-copy {
+      max-width: 760px;
+      padding-right: 0;
+      border-left: none;
+      padding-left: 0;
+      margin-left: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      margin: 8px 0 0;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+      max-width: 680px;
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-quote {
+      margin: 10px 0 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-style: italic;
+      max-width: 620px;
+      opacity: 0.85;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin: 12px 0 10px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      text-transform: none;
+      text-shadow: 0 0 16px rgba(0, 0, 0, 0.18);
+      word-spacing: 0.1em;
+    }
+
+    .hero-title-accent {
+      color: #f5c54b;
+    }
+
+    .hero-title-plain {
+      color: #ffffff;
+    }
+
+    .hero-logo {
+      width: 200px;
+      height: 200px;
+      border-radius: 28px;
+      border: 2px solid rgba(245, 197, 75, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 40px rgba(245, 197, 75, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 26px;
+    }
+
+    .hero-text {
+      margin: 28px 0 34px;
+      max-width: 580px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 16px 28px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, rgba(245, 197, 75, 0.95), rgba(245, 197, 75, 0.75));
+      color: #1c1b18;
+      box-shadow: 0 18px 40px rgba(245, 197, 75, 0.32);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-project-button {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0 0;
+    }
+
+    .button-project {
+      background: linear-gradient(90deg, #f5c54b 50%, #ffffff 50%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-transform: none;
+      font-weight: 600;
+      padding: 12px 24px 12px 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 197, 75, 0.3);
+      box-shadow: 0 8px 24px rgba(245, 197, 75, 0.2);
+      position: relative;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .button-project::before {
+      content: '⭐';
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #f5c54b;
+      z-index: 1;
+    }
+
+    .button-project:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(245, 197, 75, 0.3);
+    }
+
+    .button-secondary {
+      background: rgba(245, 197, 75, 0.12);
+      color: var(--text);
+      border: 1px solid rgba(245, 197, 75, 0.18);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      transition: none;
+    }
+
+    body.dark .hero-card {
+      background: transparent;
+      border: none;
+    }
+
+    .hero-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 72px 0;
+      position: relative;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: rgba(245, 197, 75, 0.35);
+      opacity: 0.9;
+      box-shadow: 0 0 18px rgba(245, 197, 75, 0.18);
+    }
+
+    .section::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      width: 64px;
+      height: 64px;
+      border: 1px dashed rgba(245, 197, 75, 0.22);
+      border-radius: 14px;
+      opacity: 0.7;
+    }
+
+    #about {
+      padding-top: 108px;
+    }
+
+    .section-title {
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    .section-heading {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 3rem);
+      max-width: 760px;
+    }
+
+    .section-text {
+      margin: 24px 0 0;
+      color: var(--muted);
+      max-width: 740px;
+      font-size: 1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .info-card {
+      padding: 32px;
+      border-radius: 32px;
+      background: rgba(255, 250, 236, 0.88);
+      border: 1px solid rgba(245, 197, 75, 0.18);
+      box-shadow: 0 24px 60px rgba(245, 197, 75, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease, border-color 0.4s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    body.dark .info-card {
+      background: rgba(14, 20, 38, 0.92);
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.18);
+    }
+
+    .info-card h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+
+    .info-card p {
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .skill-item {
+      padding: 24px;
+      border-radius: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.07);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.4s ease, background 0.4s ease;
+    }
+
+    body.dark .skill-item {
+      background: rgba(15, 22, 38, 0.95);
+    }
+
+    .skill-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
+    }
+
+    .skill-title {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .skill-description {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+      margin-top: 32px;
+    }
+
+    .project-card {
+      padding: 28px;
+      border-radius: 32px;
+      background: rgba(255, 250, 236, 0.88);
+      border: 1px solid rgba(245, 197, 75, 0.18);
+      box-shadow: 0 24px 60px rgba(245, 197, 75, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.4s ease, border-color 0.4s ease;
+      min-height: 260px;
+      display: grid;
+      gap: 18px;
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: rgba(245, 197, 75, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(245, 197, 75, 0.12);
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 30px 90px rgba(245, 197, 75, 0.16);
+    }
+
+    body.dark .project-card {
+      background: rgba(15, 22, 38, 0.92);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 78px rgba(15, 23, 42, 0.22);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 24px 24px 0 0;
+      margin-bottom: 18px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .project-image:hover {
+      opacity: 0.95;
+      transform: scale(1.01);
+    }
+
+    .project-image:hover {
+      opacity: 0.85;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2.4rem;
+      color: #fff;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 8px;
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      transition: background 0.3s ease;
+      z-index: 1001;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .project-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(245, 197, 75, 0.12);
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 197, 75, 0.16);
+    }
+
+    .project-title {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .project-text {
+      margin: 0;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-tag {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 1.1fr 0.9fr;
+      margin-top: 24px;
+    }
+
+    .contact-card,
+    .contact-form {
+      padding: 34px;
+      border-radius: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    body.dark .contact-card,
+    body.dark .contact-form {
+      background: rgba(14, 20, 38, 0.96);
+    }
+
+    .contact-card h3,
+    .contact-form h3 {
+      margin-top: 0;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .contact-label {
+      min-width: 36px;
+      min-height: 36px;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 4px;
+    }
+
+    .contact-info strong {
+      font-weight: 700;
+    }
+
+    .contact-info span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--text);
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+      font-size: 1.15rem;
+    }
+
+    .social-icons a:hover,
+    .social-icons a:focus {
+      transform: translateY(-2px);
+      background: var(--primary-soft);
+    }
+
+    .form-group {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 16px 18px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--surface-soft);
+      color: var(--text);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.4s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-soft);
+    }
+
+    textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 26px;
+      border-radius: 999px;
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      font-weight: 700;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(245, 197, 75, 0.22);
+    }
+
+    footer {
+      padding: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(245, 197, 75, 0.12);
+      color: var(--text);
+      font-weight: 700;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-2px);
+      background: rgba(245, 197, 75, 0.22);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2,
+      .contact-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 0 18px 48px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-list {
+        gap: 18px;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-actions,
+      .theme-toggle {
+        width: 100%;
+      }
+
+      .theme-toggle {
+        justify-self: end;
+      }
+
+      .nav-list {
+        gap: 12px;
+        font-size: 0.95rem;
+      }
+
+      .button,
+      .submit-button {
+        width: 100%;
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .fade-up.delay-1 {
+      animation-delay: 0.15s;
+    }
+
+    .fade-up.delay-2 {
+      animation-delay: 0.3s;
+    }
+
+    .fade-up.delay-3 {
+      animation-delay: 0.45s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* XÓA TOÀN BỘ THANH DỌC BÊN TRÁI */
+    .hero::before,
+    .hero::after,
+    .hero-content::before,
+    .hero-content::after,
+    .line,
+    .vertical-line,
+    .left-line {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      border: none !important;
+      background: transparent !important;
+      content: none !important;
+      box-shadow: none !important;
+    }
+
+    /* XÓA BORDER TRÁI NẾU CÓ */
+    .hero,
+    .hero-content {
+      border-left: none !important;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="page navbar">
+      <div class="logo">Y.VY</div>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero" id="home">
+      <div class="hero-copy fade-up delay-1">
+        <div class="hero-logo">
+          <img src="" alt="Avatar" style="background: rgba(245, 197, 75, 0.15);">
+        </div>
+        <h1 class="hero-title"><span class="hero-title-accent">Võ Ngọc</span> <span class="hero-title-plain">Yến Vy</span></h1>
+        <div class="hero-subtitle">Sinh viên Đại học Gia Định - Đồ họa Kỹ thuật số</div>
+        <div class="hero-quote">"Thiết kế là cách tôi kể chuyện với thế giới."</div>
+        <div class="hero-project-button">
+          <a href="#projects" class="button button-project">Xem dự án</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-title">About</div>
+      <h2 class="section-heading">Tôi thiết kế những giải pháp trực quan và có giá trị.</h2>
+      <p class="section-text">Với tinh thần học hỏi liên tục và óc sáng tạo, tôi phát triển những giao diện dễ nhìn, dễ tương tác và phù hợp với phong cách tối giản. Từng dự án là cơ hội để nâng cao trải nghiệm người dùng và xây dựng hình ảnh thương hiệu thống nhất.</p>
+      <div class="grid-2" style="margin-top: 32px;">
+        <article class="info-card fade-up delay-2">
+          <h3>Về tôi</h3>
+          <p>Tôi yêu thích thiết kế đồ họa và UI/UX. Tôi chuyên tạo bố cục sạch, hệ thống màu sắc hài hòa và nhấn mạnh trải nghiệm người dùng. Mục tiêu của tôi là biến mỗi dự án thành sản phẩm thiết kế chuyên nghiệp và dễ nhớ.</p>
+        </article>
+        <article class="info-card fade-up delay-3">
+          <h3>Học vấn</h3>
+          <p>Đại học Gia Định — Khoa Công Nghệ Thông Tin. Ngành học Đồ họa Kỹ thuật số giúp tôi kết hợp kỹ năng mỹ thuật với kỹ thuật số để tạo ra sản phẩm thiết kế hiện đại.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-title">Skills</div>
+      <h2 class="section-heading">Các kỹ năng & công cụ tôi sử dụng.</h2>
+      <div class="skills-grid" style="margin-top: 32px;">
+        <div class="skill-item fade-up">
+          <h4 class="skill-title">Photoshop</h4>
+          <p class="skill-description">Thiết kế hình ảnh, chỉnh sửa ảnh và tạo mockup chất lượng.</p>
+        </div>
+        <div class="skill-item fade-up delay-1">
+          <h4 class="skill-title">Illustrator</h4>
+          <p class="skill-description">Thiết kế vector, icon và hệ thống nhận diện thương hiệu tối giản.</p>
+        </div>
+        <div class="skill-item fade-up delay-2">
+          <h4 class="skill-title">UI/UX</h4>
+          <p class="skill-description">Thiết kế giao diện và trải nghiệm người dùng chuẩn mực, dễ sử dụng.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-title">Projects</div>
+      <h2 class="section-heading">Dự án mẫu nổi bật.</h2>
+      <div class="projects-grid">
+        <article class="project-card fade-up">
+          <img src="image.png" alt="E-commerce Project" class="project-image">
+          <span class="project-badge">Web bán hàng</span>
+          <h3 class="project-title">Giao diện cửa hàng trực tuyến</h3>
+          <p class="project-text">Thiết kế web bán hàng với bố cục sạch, thanh toán rõ ràng và trải nghiệm mua sắm dễ dàng.</p>
+          <div class="project-footer">
+            <span class="project-tag">UI/UX · Thương mại điện tử</span>
+          </div>
+        </article>
+        <article class="project-card fade-up delay-1">
+          <img src="image copy.png" alt="Education Project" class="project-image">
+          <span class="project-badge">Website trường học</span>
+          <h3 class="project-title">Website giáo dục</h3>
+          <p class="project-text">Thiết kế giao diện trường học thân thiện, dễ truy cập và truyền tải thông tin hiệu quả.</p>
+          <div class="project-footer">
+            <span class="project-tag">Branding · Giáo dục</span>
+          </div>
+        </article>
+        <article class="project-card fade-up delay-2">
+          <img src="image copy 2.png" alt="LMS Project" class="project-image">
+          <span class="project-badge">LMS System</span>
+          <h3 class="project-title">Hệ thống học trực tuyến</h3>
+          <p class="project-text">Bố cục giao diện học tập trực tuyến rõ ràng, thân thiện với người dùng và quản lý nội dung đơn giản.</p>
+          <div class="project-footer">
+            <span class="project-tag">E-learning · UX</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-title">Contact</div>
+      <h2 class="section-heading">Kết nối với tôi.</h2>
+      <div class="contact-grid">
+        <div class="contact-card fade-up">
+          <h3>Thông tin liên hệ</h3>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-label">📧</span>
+              <div class="contact-info">
+                <strong>Email</strong>
+                <span>yonvy.design@example.com</span>
+              </div>
+            </li>
+            <li>
+              <span class="contact-label">💬</span>
+              <div class="contact-info">
+                <strong>Social</strong>
+                <span class="social-icons">
+                  <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">📘</a>
+                  <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">🎵</a>
+                  <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
+                </span>
+              </div>
+            </li>
+            <li>
+              <span class="contact-label">🏫</span>
+              <div class="contact-info">
+                <strong>Đại học Gia Định</strong>
+                <span>Khoa Công Nghệ Thông Tin</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <form class="contact-form fade-up delay-1" action="#" method="POST">
+          <h3>Gửi lời nhắn</h3>
+          <div class="form-group">
+            <label for="name">Họ và tên</label>
+            <input id="name" type="text" placeholder="Nhập họ và tên" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Nhập email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Tin nhắn</label>
+            <textarea id="message" placeholder="Viết nội dung liên hệ"></textarea>
+          </div>
+          <button type="submit" class="submit-button">Gửi tin nhắn</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page">
+    <p>© 2026 Võ Ngọc Yến Vy • Sinh viên Đại học Gia Định</p>
+    <div class="social-links">
+      <a href="#">IG</a>
+      <a href="#">BE</a>
+      <a href="#">LI</a>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close">&times;</button>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="Project Image">
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark') {
+      document.body.classList.add('dark');
+      themeToggle.textContent = '☀️';
+    } else {
+      themeToggle.textContent = '🌙';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const projectImages = document.querySelectorAll('.project-image');
+
+    projectImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    const hero = document.querySelector('.hero');
+    const decoItems = document.querySelectorAll('.hero-deco');
+
+    function updateHeroParallax(event) {
+      const rect = hero.getBoundingClientRect();
+      const x = (event.clientX - (rect.left + rect.width / 2)) / rect.width;
+      const y = (event.clientY - (rect.top + rect.height / 2)) / rect.height;
+
+      decoItems.forEach((item) => {
+        const depth = parseFloat(getComputedStyle(item).getPropertyValue('--depth-mult')) || 0.12;
+        item.style.setProperty('--offset-x', `${x * depth * 40}px`);
+        item.style.setProperty('--offset-y', `${y * depth * 26}px`);
+      });
+    }
+
+    hero.addEventListener('pointermove', updateHeroParallax);
+    hero.addEventListener('pointerleave', () => {
+      decoItems.forEach((item) => {
+        item.style.setProperty('--offset-x', '0px');
+        item.style.setProperty('--offset-y', '0px');
+      });
+    });
+  </script>
+</body>
+</html>
