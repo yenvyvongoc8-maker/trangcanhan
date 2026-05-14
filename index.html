@@ -24,7 +24,7 @@
       color-scheme: light;
     }
 
-    body.dark {
+    body.dark-mode {
       --bg: #050506;
       --surface: rgba(10, 10, 14, 0.95);
       --surface-soft: rgba(15, 15, 20, 0.92);
@@ -106,7 +106,7 @@
       50% { transform: translateY(-6px); }
     }
 
-    body.dark::before {
+    body.dark-mode::before {
       background: radial-gradient(circle at top right, rgba(244, 216, 111, 0.1), transparent 26%),
                   linear-gradient(180deg, rgba(10, 10, 14, 0.9), rgba(0, 0, 0, 0.95));
     }
@@ -143,7 +143,7 @@
       transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     }
 
-    body.dark header {
+    body.dark-mode header {
       background: rgba(0, 0, 0, 0.86);
       border-bottom-color: rgba(244, 216, 111, 0.18);
     }
@@ -230,7 +230,7 @@
       transition: transform 0.25s ease, background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
     }
 
-    body.dark .theme-toggle {
+    body.dark-mode .theme-toggle {
       background: rgba(244, 216, 111, 0.18);
       border-color: rgba(244, 216, 111, 0.32);
       color: var(--text);
@@ -466,7 +466,7 @@
       transition: none;
     }
 
-    body.dark .hero-card {
+    body.dark-mode .hero-card {
       background: transparent;
       border: none;
     }
@@ -554,7 +554,7 @@
       backdrop-filter: blur(8px);
     }
 
-    body.dark .info-card {
+    body.dark-mode .info-card {
       background: rgba(14, 20, 38, 0.92);
     }
 
@@ -587,7 +587,7 @@
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.4s ease, background 0.4s ease;
     }
 
-    body.dark .skill-item {
+    body.dark-mode .skill-item {
       background: rgba(15, 22, 38, 0.95);
     }
 
@@ -648,7 +648,7 @@
       box-shadow: 0 30px 90px rgba(245, 197, 75, 0.16);
     }
 
-    body.dark .project-card {
+    body.dark-mode .project-card {
       background: rgba(15, 22, 38, 0.92);
     }
 
@@ -779,8 +779,8 @@
       transition: background 0.4s ease, border-color 0.4s ease;
     }
 
-    body.dark .contact-card,
-    body.dark .contact-form {
+    body.dark-mode .contact-card,
+    body.dark-mode .contact-form {
       background: rgba(14, 20, 38, 0.96);
     }
 
@@ -1047,55 +1047,45 @@
       border-left: none !important;
     }
 
-    /* ===== BUTTON ===== */
-    .project-btn{
-      --btn-bg: #000;
-      --btn-text: #fff;
-
-      background: var(--btn-bg);
-      color: var(--btn-text);
-
-      padding: 16px 34px;
-      border-radius: 50px;
-      border: none;
-
-      font-size: 16px;
-      font-weight: 600;
-
-      cursor: pointer;
-      transition: 0.4s ease;
-    }
-
     /* =========================
-       BUTTON MẶC ĐỊNH (LIGHT)
+       BUTTON XEM DỰ ÁN
     ========================= */
+
+    /* LIGHT MODE */
     .project-btn{
-        background: #000 !important;
-        color: #fff !important;
+        background: #000;
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.08);
 
-        padding: 16px 36px;
+        padding: 16px 38px;
         border-radius: 50px;
-        border: none;
 
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
 
-        cursor: pointer;
         transition: 0.4s ease;
+        cursor: pointer;
+
+        box-shadow: 0 0 25px rgba(0,0,0,0.2);
     }
 
-    /* =========================
-       DARK MODE = VÀNG
-    ========================= */
+    /* DARK MODE */
     body.dark-mode .project-btn{
         background: #f5c542 !important;
         color: #111 !important;
+        border: 1px solid rgba(245,197,66,0.4) !important;
 
-        box-shadow: 0 0 25px rgba(245,197,66,0.45);
+        box-shadow: 0 0 25px rgba(245,197,66,0.25) !important;
+    }
+
+    /* HOVER */
+    .project-btn:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 0 40px rgba(245,197,66,0.45);
     }
   </style>
 </head>
-<body class="dark-mode">
+<body>
   <header>
     <div class="page navbar">
       <div class="logo">Y.VY</div>
@@ -1269,15 +1259,15 @@
     const themeToggle = document.getElementById('themeToggle');
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
-      document.body.classList.add('dark');
+      document.body.classList.add('dark-mode');
       themeToggle.textContent = '☀️';
     } else {
       themeToggle.textContent = '🌙';
     }
 
     themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
       themeToggle.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
