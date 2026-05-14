@@ -1092,6 +1092,28 @@
     body.dark-mode .project-btn:hover{
         box-shadow: 0 0 40px rgba(245,197,66,0.55);
     }
+
+    /* =========================
+       XÓA KHOẢNG TRỐNG PHÍA TRÊN HERO
+    ========================= */
+    .hero{
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* HERO CONTENT */
+    .hero-copy{
+        transform: translateY(-40px);
+    }
+
+    /* BỎ MARGIN HEADER */
+    header{
+        margin-bottom: 0;
+    }
   </style>
 </head>
 <body>
