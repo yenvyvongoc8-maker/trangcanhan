@@ -1046,9 +1046,56 @@
     .hero-content {
       border-left: none !important;
     }
+
+    /* ===== BUTTON ===== */
+    .project-btn{
+      --btn-bg: #000;
+      --btn-text: #fff;
+
+      background: var(--btn-bg);
+      color: var(--btn-text);
+
+      padding: 16px 34px;
+      border-radius: 50px;
+      border: none;
+
+      font-size: 16px;
+      font-weight: 600;
+
+      cursor: pointer;
+      transition: 0.4s ease;
+    }
+
+    /* =========================
+       BUTTON MẶC ĐỊNH (LIGHT)
+    ========================= */
+    .project-btn{
+        background: #000 !important;
+        color: #fff !important;
+
+        padding: 16px 36px;
+        border-radius: 50px;
+        border: none;
+
+        font-size: 16px;
+        font-weight: 600;
+
+        cursor: pointer;
+        transition: 0.4s ease;
+    }
+
+    /* =========================
+       DARK MODE = VÀNG
+    ========================= */
+    body.dark-mode .project-btn{
+        background: #f5c542 !important;
+        color: #111 !important;
+
+        box-shadow: 0 0 25px rgba(245,197,66,0.45);
+    }
   </style>
 </head>
-<body>
+<body class="dark-mode">
   <header>
     <div class="page navbar">
       <div class="logo">Y.VY</div>
@@ -1075,7 +1122,7 @@
         <div class="hero-subtitle">Sinh viên Đại học Gia Định - Đồ họa Kỹ thuật số</div>
         <div class="hero-quote">"Thiết kế là cách tôi kể chuyện với thế giới."</div>
         <div class="hero-project-button">
-          <a href="#projects" class="button button-project">Xem dự án</a>
+          <button class="project-btn">⭐ Xem dự án</button>
         </div>
       </div>
     </section>
