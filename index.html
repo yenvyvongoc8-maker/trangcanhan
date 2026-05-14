@@ -1051,37 +1051,46 @@
        BUTTON XEM DỰ ÁN
     ========================= */
 
-    /* LIGHT MODE */
+    /* LIGHT MODE (MẶC ĐỊNH) */
     .project-btn{
         background: #000;
         color: #fff;
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(0,0,0,0.15);
 
-        padding: 16px 38px;
-        border-radius: 50px;
+        padding: 14px 28px;
+        border-radius: 40px;
 
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 600;
 
-        transition: 0.4s ease;
+        transition: all 0.4s ease;
         cursor: pointer;
 
-        box-shadow: 0 0 25px rgba(0,0,0,0.2);
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
     }
 
     /* DARK MODE */
     body.dark-mode .project-btn{
-        background: #f5c542 !important;
-        color: #111 !important;
-        border: 1px solid rgba(245,197,66,0.4) !important;
+        background: #f5c542;
+        color: #111;
+        border: 1px solid rgba(245,197,66,0.4);
 
-        box-shadow: 0 0 25px rgba(245,197,66,0.25) !important;
+        box-shadow: 0 0 25px rgba(245,197,66,0.35);
     }
 
     /* HOVER */
     .project-btn:hover{
         transform: translateY(-4px);
-        box-shadow: 0 0 40px rgba(245,197,66,0.45);
+    }
+
+    /* HOVER LIGHT MODE */
+    body:not(.dark-mode) .project-btn:hover{
+        box-shadow: 0 0 35px rgba(0,0,0,0.35);
+    }
+
+    /* HOVER DARK MODE */
+    body.dark-mode .project-btn:hover{
+        box-shadow: 0 0 40px rgba(245,197,66,0.55);
     }
   </style>
 </head>
@@ -1112,7 +1121,7 @@
         <div class="hero-subtitle">Sinh viên Đại học Gia Định - Đồ họa Kỹ thuật số</div>
         <div class="hero-quote">"Thiết kế là cách tôi kể chuyện với thế giới."</div>
         <div class="hero-project-button">
-          <button class="project-btn">⭐ Xem dự án</button>
+          <button class="project-btn">Xem dự án</button>
         </div>
       </div>
     </section>
